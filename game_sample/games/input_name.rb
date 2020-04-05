@@ -1,54 +1,61 @@
+require './games/message_dialog.rb'
+
 class InputName
+  include MessageDialog
+
+  attr_reader :push_name
+  
+  NAME_LENGTH = [2,6]
 
   def initialize
     @get_name
-    @name_count = false
-    @name_char = false
+    @name_length = false
+    @name_chara = false
     @name_check = false
+    @push_name
   end
 
 
   def input_name
-    puts <<~EOS
-      初めまして！
-      まずはあなたの名前を教えてください。
-      （全角ひらがなを使って２〜６文字以内で入力してください。）
-    EOS
+    first_message
 
     loop do
       get_name
-      name_count_judge?
-      name_char_judge?
+      name_length_judge?
+      name_chara_judge?
       warning_comment
       break if @name_check
     end
-    puts "成功"
+    @push_name = @get_name
+
+    start_message(@push_name)
   end
 
+
+  private
 
   def get_name
     @get_name = gets.chomp
   end
 
 
-  def name_count_judge?
-    count = @get_name.length
-
-    @name_count = count.between?(2,6)
+  def name_length_judge?
+    length = @get_name.length
+    @name_length = length.between?(*NAME_LENGTH)
   end
 
 
-  def name_char_judge?
-    @name_char = true if @get_name =~ /^[\p{Hiragana}]+$/
+  def name_chara_judge?
+    @name_chara = true if @get_name =~ /^[\p{Hiragana}]+$/
   end
 
 
   def warning_comment
-    if @name_count && @name_char
+    if @name_length && @name_chara
       @name_check = true
-    elsif @name_count == true && @name_char == false
+    elsif @name_length == true && @name_chara == false
       puts "全角ひらがなで入力してください！"
-    elsif @name_count == false && @name_char == true
+    elsif @name_length == false && @name_chara == true
       puts "２〜６文字以内で入力してください！"
     else
       puts "全角ひらがなを使って２〜６文字以内で入力してください。漢字と半角英数字は使えません!"
@@ -56,8 +63,3 @@ class InputName
   end
   
 end
-
-# def input_test(hoge)
-  hage = InputName.new
-  hage.input_name
-# end

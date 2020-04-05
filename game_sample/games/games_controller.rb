@@ -1,4 +1,4 @@
-require './games/message.dialog'
+require './games/message_dialog'
 
 class GamesController
   include MessageDialog
@@ -15,6 +15,7 @@ class GamesController
       break if battle_end?
       @monster.attack(@brave)
       break if battle_end?
+      puts "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝"
     end
 
     battle_judgment
@@ -56,6 +57,7 @@ class GamesController
       gold = 0
     end
 
-    {brave_win_flag: brave_win_flag, exp: exp, gold: gold}
+    {brave_win_flag: brave_win_flag, exp: exp, gold: gold, brave_name: @brave.name
+    }
   end
 end

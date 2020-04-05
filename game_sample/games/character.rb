@@ -1,4 +1,4 @@
-require './games/message.dialog'
+require './games/message_dialog'
 
 class Character
   include MessageDialog
