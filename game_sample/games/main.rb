@@ -1,6 +1,6 @@
-require './brave'
-require './monster'
-require './games_controller'
+require './games/brave'
+require './games/monster'
+require './games/games_controller'
 
 games_controller = GamesController.new
 

@@ -1,4 +1,4 @@
-require './message.dialog'
+require './games/message.dialog'
 
 class GamesController
   include MessageDialog

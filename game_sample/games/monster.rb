@@ -1,4 +1,4 @@
-require './character'
+require './games/character'
 
 class Monster < Character
   POWER_UP_RATE = 1.5

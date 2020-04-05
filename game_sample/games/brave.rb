@@ -1,4 +1,4 @@
-require './character'
+require './games/character'
 
 class Brave < Character
   SPECIAL_ATTACK_CONSTANT = 1.5
