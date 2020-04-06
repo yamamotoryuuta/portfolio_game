@@ -8,22 +8,18 @@ class InputName
   NAME_LENGTH = [2,6]
 
   def initialize
-    @get_name
     @name_length = false
     @name_chara = false
     @name_check = false
-    @push_name
   end
 
 
-  def input_name
+  def entry_name
     first_message
 
     loop do
       get_name
-      name_length_judge?
-      name_chara_judge?
-      warning_comment
+      name_checker
       break if @name_check
     end
     @push_name = @get_name
@@ -36,6 +32,13 @@ class InputName
 
   def get_name
     @get_name = gets.chomp
+  end
+
+
+  def name_checker
+    name_length_judge?
+    name_chara_judge?
+    warning_comment
   end
 
 
@@ -53,9 +56,9 @@ class InputName
   def warning_comment
     if @name_length && @name_chara
       @name_check = true
-    elsif @name_length == true && @name_chara == false
+    elsif @name_length && !@name_chara
       puts "全角ひらがなで入力してください！"
-    elsif @name_length == false && @name_chara == true
+    elsif !@name_length && @name_chara
       puts "２〜６文字以内で入力してください！"
     else
       puts "全角ひらがなを使って２〜６文字以内で入力してください。漢字と半角英数字は使えません!"

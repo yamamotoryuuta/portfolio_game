@@ -5,23 +5,31 @@ class GamesController
 
   EXP_CONSTANT = 2
   GOLD_CONSTANT = 3
-
+  DISPLAY_SPEED = 5
 
   def battle(**params)
     build_characters(params)
-    
+
+    battle_speed
     loop do
       @brave.attack(@monster)
       break if battle_end?
+      battle_speed
+      puts "------------------------------------"
       @monster.attack(@brave)
       break if battle_end?
+      battle_speed
       puts "＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝"
     end
-
+    battle_speed
     battle_judgment
   end
 
   private
+
+  def battle_speed
+    sleep(DISPLAY_SPEED)
+  end
 
   def build_characters(**params)
     @brave = params[:brave]
