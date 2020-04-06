@@ -1,6 +1,6 @@
 # portfolio_game
 かみざとよしとさんのドラクエ風教材（https://www.techpit.jp/p/ruby-dragon-quest）<br>
-に名前入力機能を実装してみました。
+に名前入力機能を実装してみました。<br>
 クローンした後、ruby games/main.rbで実行してください。
 
 ## 要件
